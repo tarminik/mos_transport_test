@@ -82,8 +82,8 @@
 
 1.  **Склонируйте репозиторий**:
     ```bash
-    git clone <URL репозитория>
-    cd <имя папки>
+    git clone https://github.com/tarminik/mos_transport_test
+    cd mos_transport_test
     ```
 
 2.  **Запустите приложение с помощью Docker Compose**:
