@@ -34,10 +34,10 @@ def test_problems_endpoint(client):
         incident = Incident.query.one()
         assert incident is not None
         
-        saved_headers = json.loads(incident.headers)
+        saved_headers = incident.headers
         assert saved_headers['x-test-header'] == 'TestValue'
         
-        assert json.loads(incident.body) == body
+        assert incident.body == body
         assert response_data['hash'] == incident.hash_value
 
 
