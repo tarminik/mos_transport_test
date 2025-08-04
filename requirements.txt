@@ -1,5 +1,5 @@
-Flask==2.3.3
-Flask-RESTful==0.3.10
-Flask-SQLAlchemy==3.0.5
-gunicorn==21.2.0
-psycopg2-binary==2.9.7
+Flask
+Flask-RESTful
+Flask-SQLAlchemy
+psycopg2-binary
+pytest

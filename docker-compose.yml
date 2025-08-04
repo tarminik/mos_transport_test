@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://incident_user:incident_pass@db:5432/incident_db
+      - FLASK_ENV=production
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    entrypoint: ["/app/wait-for-postgres.sh", "db"]
+    command: ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "app:app"]
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=incident_db
+      - POSTGRES_USER=incident_user
+      - POSTGRES_PASSWORD=incident_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
